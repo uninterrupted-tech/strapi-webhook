@@ -1,0 +1,12 @@
+name: Hello Strapi Workflow
+
+on:
+  repository_dispatch:
+    types: [strapi_triggers_github_workflow]
+
+jobs:
+  say-hello:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print greeting
+        run: echo "Hello, Strapi!"
