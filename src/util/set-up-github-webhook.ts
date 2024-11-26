@@ -15,7 +15,10 @@ const name = "GitHub Action";
  * - https://docs.strapi.io/dev-docs/backend-customization/webhooks
  */
 export const setUpGithubWebhook = async (strapi: Core.Strapi) => {
-  const webhookStore = await strapi.get("webhookStore");
+  const webhookStore =
+    "webhookStore" in strapi
+      ? strapi.webhookStore // v4
+      : await strapi.get("webhookStore"); // v5
 
   try {
     const webhooks = await webhookStore.findWebhooks();
